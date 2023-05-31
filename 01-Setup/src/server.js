@@ -1,31 +1,27 @@
 const app = require('express')();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-const path = require('path');
+const http = require('http').Server(app)
+const path = require('path')
+const io = require('socket.io')(http)
+require('colors');
 
 
-app.get('/', (req,res) => {
-      var options = {
-            root: path.join(__dirname)
+app.get('/',(req,res) => {
+      const options = {
+            root : path.join(__dirname)
       }
-
-      var fileName = 'index.html';
-      res.sendFile(fileName,options)
+      const fileName = 'index.html'
+      return res.sendFile(fileName, options)
 })
 
 io.on('connection', (socket) => {
-      console.log("Socket is connected");
+      console.log('socket is connected'.rainbow);
 
       socket.on('disconnect', () => {
-            console.log('Socket is disconnected');
+            console.log('socket is disconnected'.underline.red);
       })
 })
 
-server.listen(3000,() => {
-      console.log('server is running on port 3000');
+
+http.listen(3000, () => {
+      console.log('Server is running on 3000'.bold.blue);
 })
-
-
-
-
-
