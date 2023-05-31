@@ -20,6 +20,13 @@ io.on('connection', (socket) => {
             socket.send('message from server side by prereserved event');
       },3000)
 
+      setTimeout(() => {
+            socket.emit('myCustomEvent' , {message:'this is custom events by server side! ,'})
+      },2000);
+      
+      socket.on('myCustomEventClient' , (data) => {
+            console.log(data.bold.underline.yellow);
+      })
       socket.on('disconnect', () => {
             console.log('Socket is disconnected'.bold.underline.red);
       })

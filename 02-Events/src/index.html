@@ -11,9 +11,21 @@
       <h3>Events in Socket</h3>
       <script>
             const socket = io();
+
+            // prereserved event
             socket.on('message', (data) => {
                   document.write(data)
             })
+
+            // custom event
+            socket.on('myCustomEvent', (obj) => {
+                  document.write(' '+ obj.message)
+            })
+
+
+            // client side custom event
+            socket.emit('myCustomEventClient', 'Hello I am coming from client side by custom event')
       </script>
+      <script></script>
 </body>
 </html>
