@@ -13,9 +13,11 @@ app.get('/', (req,res) => {
       return res.sendFile(fileName,option);
 })
 
-io.on('connection', (socket) => {
-      console.log('Socket is running'.rainbow);
+const namespace1 = io.of('/custom-namespace');
 
+namespace1.on('connection', (socket) => {
+      console.log('Socket is running'.rainbow);
+      namespace1.emit('custom-event', 'from server side');
       socket.on('disconnect', () => {
             console.log('Socket is disconnected'.bold.underline.red);
       })

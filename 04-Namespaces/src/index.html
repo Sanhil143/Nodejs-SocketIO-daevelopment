@@ -12,7 +12,11 @@
 <body>
       <h3>Namespaces in socket</h3>
       <script>
-            const socket = io();
+            const socket = io('/custom-namespace');
+            socket.on('custom-event', (data) => {
+                  document.body.innerHTML = '';
+                  document.write(data);
+            })
       </script>
 </body>
 </html>
