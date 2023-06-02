@@ -23,6 +23,7 @@ io.on('connection', (socket) => {
       //welcome message on new joined user  custom event
       socket.emit('newUserConnect', { message: 'hello, welcome dear!' })
 
+      // only shows already connected user
       socket.broadcast.emit('newUserConnect', { message: user + 'users connected' })
 
 
@@ -32,6 +33,8 @@ io.on('connection', (socket) => {
 
             //check how many user connected
             // io.sockets.emit('broadcast', {message: user + 'users connected'})
+
+      // only shows already connected user
 
             socket.broadcast.emit('newUserConnect', { message: user + 'users connected' })
 
